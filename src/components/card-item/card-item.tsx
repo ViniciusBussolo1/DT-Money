@@ -21,7 +21,7 @@ export function CardItem({ title, transacao, preco }: CardItemProps) {
         {transacao === 'entrada' ? (
           <Image src={IconEntrada} alt="Icone de entrada" />
         ) : transacao === 'saida' ? (
-          <Image src={IconSaida} alt="Icone de saida" />
+          <Image src={IconSaida} alt="Icone de saída" />
         ) : (
           <DollarSign />
         )}

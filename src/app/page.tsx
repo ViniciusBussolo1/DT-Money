@@ -1,5 +1,6 @@
 import { CardItem } from '@/components/card-item/card-item'
 import { Header } from '@/components/header/header'
+import { TableItems } from '@/components/table/table-items'
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <CardItem title="Saidas" transacao="saida" preco={1259} />
         <CardItem title="Total" preco={16141} />
       </div>
+      <TableItems />
     </main>
   )
 }
