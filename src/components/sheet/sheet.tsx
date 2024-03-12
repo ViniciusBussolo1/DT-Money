@@ -8,8 +8,12 @@ import { SheetContent, SheetHeader, SheetTitle } from '../ui/sheet'
 
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
+import { NewTransactionContext } from '@/context/new-transaction-context'
+import { useContext } from 'react'
 
 export function SheetComponent() {
+  const { setNewTransaction } = useContext(NewTransactionContext)
+
   const schemaForm = z.object({
     descricao: z.string().nonempty('Informe a descrição'),
     preco: z.string().nonempty('Informe o preço'),
@@ -26,9 +30,7 @@ export function SheetComponent() {
   type FormProps = z.infer<typeof schemaForm>
 
   const handleSubmitForm = (props: FormProps) => {
-    const tipo = props.tipo
-
-    console.log(tipo)
+    setNewTransaction(props)
   }
 
   return (
