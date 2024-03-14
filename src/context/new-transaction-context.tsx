@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Dispatch,
   ReactNode,
@@ -6,16 +8,17 @@ import {
   useState,
 } from 'react'
 
-interface newTransactionProps {
+interface TransactionProps {
   descricao: string
   preco: string
   categoria: string
-  tipo: string
+  tipo: 'entrada' | 'saida'
+  date: Date
 }
 
 interface NewTransactionContextDataProps {
-  newTransaction: newTransactionProps
-  setNewTransaction: Dispatch<SetStateAction<newTransactionProps>>
+  transactions: Array<TransactionProps>
+  setTransactions: Dispatch<SetStateAction<TransactionProps[]>>
 }
 
 interface NewTransaionContextProvidersProps {
@@ -29,15 +32,21 @@ export const NewTransactionContext = createContext(
 export function NewTransactionContextProvider({
   children,
 }: NewTransaionContextProvidersProps) {
-  const [newTransaction, setNewTransaction] = useState(
-    {} as newTransactionProps,
-  )
+  const [transactions, setTransactions] = useState<TransactionProps[]>(() => {
+    const transactionOnStorage = localStorage.getItem('transaction')
+
+    if (transactionOnStorage) {
+      return JSON.parse(transactionOnStorage)
+    }
+
+    return []
+  })
 
   return (
     <NewTransactionContext.Provider
       value={{
-        newTransaction,
-        setNewTransaction,
+        transactions,
+        setTransactions,
       }}
     >
       {children}

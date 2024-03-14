@@ -12,7 +12,7 @@ import { NewTransactionContext } from '@/context/new-transaction-context'
 import { useContext } from 'react'
 
 export function SheetComponent() {
-  const { setNewTransaction } = useContext(NewTransactionContext)
+  const { setTransactions, transactions } = useContext(NewTransactionContext)
 
   const schemaForm = z.object({
     descricao: z.string().nonempty('Informe a descrição'),
@@ -30,7 +30,12 @@ export function SheetComponent() {
   type FormProps = z.infer<typeof schemaForm>
 
   const handleSubmitForm = (props: FormProps) => {
-    setNewTransaction(props)
+    const data = { ...props, date: new Date() }
+
+    const TransactionsArray = [...transactions, data]
+    setTransactions(TransactionsArray)
+
+    localStorage.setItem('transaction', JSON.stringify(TransactionsArray))
   }
 
   return (
