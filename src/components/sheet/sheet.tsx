@@ -59,11 +59,7 @@ export function SheetComponent() {
             </span>
           )}
 
-          <Input
-            type="number"
-            placeholder="Preço"
-            {...form.register('preco')}
-          />
+          <Input type="text" placeholder="Preço" {...form.register('preco')} />
           {form.formState.errors.preco && (
             <span className="text-sm text-red-500">
               {form.formState.errors.preco?.message}
