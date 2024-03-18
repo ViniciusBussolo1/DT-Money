@@ -9,6 +9,7 @@ import {
 } from 'react'
 
 interface TransactionProps {
+  id: string
   descricao: string
   preco: string
   categoria: string
@@ -19,6 +20,7 @@ interface TransactionProps {
 interface NewTransactionContextDataProps {
   transactions: Array<TransactionProps>
   setTransactions: Dispatch<SetStateAction<TransactionProps[]>>
+  handleDeleteTransaction: (id: string) => void
 }
 
 interface NewTransaionContextProvidersProps {
@@ -42,11 +44,20 @@ export function NewTransactionContextProvider({
     return []
   })
 
+  const handleDeleteTransaction = (id: string) => {
+    const newArrayTransaction = transactions.filter(
+      (transaction) => transaction.id !== id,
+    )
+
+    setTransactions(newArrayTransaction)
+  }
+
   return (
     <NewTransactionContext.Provider
       value={{
         transactions,
         setTransactions,
+        handleDeleteTransaction,
       }}
     >
       {children}

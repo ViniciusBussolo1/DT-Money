@@ -30,7 +30,7 @@ export function SheetComponent() {
   type FormProps = z.infer<typeof schemaForm>
 
   const handleSubmitForm = (props: FormProps) => {
-    const data = { ...props, date: new Date() }
+    const data = { ...props, date: new Date(), id: crypto.randomUUID() }
 
     const TransactionsArray = [...transactions, data]
     setTransactions(TransactionsArray)

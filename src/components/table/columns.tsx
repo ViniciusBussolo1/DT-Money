@@ -7,7 +7,10 @@ import { format } from 'date-fns'
 import { ArrowUpDown } from 'lucide-react'
 import { Button } from '../ui/button'
 
+import { DropDownMenuDelete } from '../drop-down-menu-delete/drop-down'
+
 export type TableItemsProps = {
+  id: string
   descricao: string
   preco: string
   categoria: string
@@ -87,6 +90,14 @@ export const columns: ColumnDef<TableItemsProps>[] = [
       const formattedDate = format(row.getValue('date'), 'dd/MM/yyyy')
 
       return <div>{formattedDate}</div>
+    },
+  },
+  {
+    id: 'actions',
+    enableHiding: false,
+    cell: ({ row }) => {
+      const transaction = row.original
+      return <DropDownMenuDelete id={transaction.id} />
     },
   },
 ]
