@@ -23,7 +23,7 @@ export function CardItem({ title, transacao, preco }: CardItemProps) {
         ) : transacao === 'saida' ? (
           <Image src={IconSaida} alt="Icone de saída" />
         ) : (
-          <DollarSign />
+          <DollarSign data-testid="svg" />
         )}
       </CardHeader>
       <CardContent>

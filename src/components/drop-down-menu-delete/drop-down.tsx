@@ -7,14 +7,14 @@ import {
 } from '../ui/dropdown-menu'
 import { Button } from '../ui/button'
 import { useContext } from 'react'
-import { NewTransactionContext } from '@/context/new-transaction-context'
+import { TransactionContext } from '@/context/new-transaction-context'
 
 interface DropdownMenuDeleteProps {
   id: string
 }
 
 export function DropDownMenuDelete({ id }: DropdownMenuDeleteProps) {
-  const { handleDeleteTransaction } = useContext(NewTransactionContext)
+  const { handleDeleteTransaction } = useContext(TransactionContext)
 
   return (
     <DropdownMenu>

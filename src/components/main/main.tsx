@@ -1,6 +1,6 @@
 'use client'
 
-import { NewTransactionContext } from '@/context/new-transaction-context'
+import { TransactionContext } from '@/context/new-transaction-context'
 import { useContext } from 'react'
 import { CardItem } from '../card-item/card-item'
 import { Header } from '../header/header'
@@ -8,7 +8,7 @@ import { columns } from '../table/columns'
 import { DataTable } from '../table/data-table'
 
 export function Main() {
-  const { transactions } = useContext(NewTransactionContext)
+  const { transactions } = useContext(TransactionContext)
 
   const TransactionSaida = transactions
     .filter((transaction) => transaction.tipo === 'saida')

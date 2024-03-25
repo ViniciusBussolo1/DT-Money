@@ -17,23 +17,23 @@ interface TransactionProps {
   date: Date
 }
 
-interface NewTransactionContextDataProps {
+export interface TransactionContextDataProps {
   transactions: Array<TransactionProps>
   setTransactions: Dispatch<SetStateAction<TransactionProps[]>>
   handleDeleteTransaction: (id: string) => void
 }
 
-interface NewTransaionContextProvidersProps {
+interface TransaionContextProvidersProps {
   children: ReactNode
 }
 
-export const NewTransactionContext = createContext(
-  {} as NewTransactionContextDataProps,
+export const TransactionContext = createContext(
+  {} as TransactionContextDataProps,
 )
 
-export function NewTransactionContextProvider({
+export function TransactionContextProvider({
   children,
-}: NewTransaionContextProvidersProps) {
+}: TransaionContextProvidersProps) {
   const [transactions, setTransactions] = useState<TransactionProps[]>(() => {
     const transactionOnStorage = localStorage.getItem('transaction')
 
@@ -53,7 +53,7 @@ export function NewTransactionContextProvider({
   }
 
   return (
-    <NewTransactionContext.Provider
+    <TransactionContext.Provider
       value={{
         transactions,
         setTransactions,
@@ -61,6 +61,6 @@ export function NewTransactionContextProvider({
       }}
     >
       {children}
-    </NewTransactionContext.Provider>
+    </TransactionContext.Provider>
   )
 }

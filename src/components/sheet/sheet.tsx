@@ -8,11 +8,11 @@ import { SheetContent, SheetHeader, SheetTitle } from '../ui/sheet'
 
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import { NewTransactionContext } from '@/context/new-transaction-context'
+import { TransactionContext } from '@/context/new-transaction-context'
 import { useContext } from 'react'
 
 export function SheetComponent() {
-  const { setTransactions, transactions } = useContext(NewTransactionContext)
+  const { setTransactions, transactions } = useContext(TransactionContext)
 
   const schemaForm = z.object({
     descricao: z.string().nonempty('Informe a descrição'),
